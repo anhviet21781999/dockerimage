@@ -1,21 +1,12 @@
-# Use an existing base image
+# Sử dụng image node:14-alpine làm base image
 FROM node:14-alpine
 
-# Set the working directory inside the container
+# Định nghĩa thư mục làm việc trong container
 WORKDIR /app
 
-# Copy package.json and package-lock.json
-COPY package*.json ./
+# Sao chép file JavaScript vào thư mục làm việc trong container
+COPY app.js .
 
-# Install dependencies
-RUN npm install
-
-# Copy the rest of the application code
-COPY . .
-
-# Expose the port on which the application will run (if applicable)
-EXPOSE 3000
-
-# Specify a command to run the application
-CMD ["node", "index.js"]
+# Khai báo lệnh chạy ứng dụng khi container được khởi động
+CMD ["node", "app.js"]
 
